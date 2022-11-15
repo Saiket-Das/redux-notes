@@ -1,6 +1,6 @@
 //  ------------- REDUX FUNDAMENTALS -------------
 
-// import store from "./store/store";
+import store from "./store/store";
 // import * as actions from "./store/actions";
 
 // const unsubscribe = store.subscribe(() => {
@@ -23,7 +23,7 @@
 
 //  ------------- BUILDING REDUX FROM SCRATCH -------------
 
-import store from "./store/customStore";
+// import store from "./store/customStore";
 import * as actions from "./store/actions";
 
 // Notify user that what chnaged
