@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 let lastId = 0;
 
 // Combine Action creator & Reducer
-
 const slice = createSlice({
   name: "bugs",
   initialState: [],
