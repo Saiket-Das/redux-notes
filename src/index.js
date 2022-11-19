@@ -1,7 +1,9 @@
 //  ------------- REDUX FUNDAMENTALS -------------
 
-import store from "./store/store";
-import * as actions from "./store/actions";
+import configureStore from "./store/configureStore";
+import * as actions from "./store/bugs";
+
+const store = configureStore();
 
 const unsubscribe = store.subscribe(() => {
   console.log("Store changed", store.getState());
