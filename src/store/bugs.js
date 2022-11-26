@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { bgYellow } from "colors";
 import { createSelector } from "reselect";
 
 let lastId = 0;
@@ -31,12 +32,18 @@ const slice = createSlice({
   },
 });
 
-export const { bugAdded, bugResolved, bugAssignToUser } = slice.actions;
-export default slice.reducer;
-
 // Selector function & Memoizing Selectors with Reselect
 export const unresolvedBugsSelector = createSelector(
   (state) => state.entities.bugs,
   (state) => state.entities.projects,
   (bugs, projects) => bugs.filter((bug) => !bug.resolved)
 );
+
+export const getBugsByUserSelector = (userId) =>
+  createSelector(
+    (state) => state.entities.bugs,
+    (bugs) => bugs.filter((bug) => bug.userId === userId)
+  );
+
+export default slice.reducer;
+export const { bugAdded, bugResolved, bugAssignToUser } = slice.actions;
