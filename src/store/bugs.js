@@ -13,6 +13,7 @@ const slice = createSlice({
       bugs.push({
         id: ++lastId,
         description: action.payload.description,
+        // userId =
         resolved: false,
       });
     },
@@ -21,10 +22,16 @@ const slice = createSlice({
       const index = bugs.findIndex((bug) => bug.id === action.payload.id);
       bugs[index].resolved = true;
     },
+
+    bugAssignToUser: (bugs, action) => {
+      const { bugId, userId } = action.payload;
+      const index = bugs.findIndex((bug) => bug.id === bugId);
+      bugs[index].userId = userId;
+    },
   },
 });
 
-export const { bugAdded, bugResolved } = slice.actions;
+export const { bugAdded, bugResolved, bugAssignToUser } = slice.actions;
 export default slice.reducer;
 
 // Selector function & Memoizing Selectors with Reselect
