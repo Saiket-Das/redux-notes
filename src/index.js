@@ -27,19 +27,3 @@ const unresolvedBugs = unresolvedBugsSelector(store.getState());
 console.log("Current state", store.getState());
 
 console.log("UnresolvedBugs", unresolvedBugs);
-
-//  ------------- BUILDING REDUX FROM SCRATCH -------------
-
-// import store from "./store/customStore";
-// import * as actions from "./store/actions";
-
-// // Notify user that what chnaged
-// store.subscribe(() => {
-//   console.log("Store changed", store.getState());
-// });
-
-// // Changing state
-// store.dispatch(actions.bugAdded("Bug 1"));
-
-// // Get current state
-// console.log("Current state", store.getState());

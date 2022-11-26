@@ -1,0 +1,43 @@
+------------- BUILDING REDUX FROM SCRATCH -------------
+
+// import store from "./store/customStore";
+// import * as actions from "./store/actions";
+
+// // Notify user that what chnaged
+// store.subscribe(() => {
+//   console.log("Store changed", store.getState());
+// });
+
+// // Changing state
+// store.dispatch(actions.bugAdded("Bug 1"));
+
+// // Get current state
+// console.log("Current state", store.getState());
+
+
+
+
+------------- Slices -------------
+//  Action creator
+export const bugAdded = createAction("bugAdded");
+export const bugResolved = createAction("bugResolved");
+export const bugRemoved = createAction("bugRemoved"
+ 
+Arrow Function (Redux)
+    export const bugAdded = description=>({
+        type: BUG_ADDED,
+        payload: {
+          description: description,
+    },
+})
+
+
+  Reducer
+ export default createReducer([], {
+        key: values,
+        actions: functions (event=> event handler)
+   [bugAdded.type]: (bugs, action) => {
+   },
+   [bugResolved.type]: (bugs, action) => {
+   },
+ });
