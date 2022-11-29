@@ -1,10 +1,12 @@
 // SNA (S => Store, N => Next, A => Action)
 
-const logger = (store) /* ({getSate, dispatch}) */ => (next) => (action) => {
-  console.log("store", store);
-  console.log("next", next);
-  console.log("action", action);
-  next(action);
-};
+const logger =
+  (param) => (store) /* ({getSate, dispatch}) */ => (next) => (action) => {
+    console.log("Logging", param);
+    // console.log("Store", store);
+    // console.log("Next", next);
+    // console.log("Action", action);
+    next(action);
+  };
 
 export default logger;
