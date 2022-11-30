@@ -9,9 +9,18 @@ const store = configureStore();
 //   console.log(getSate());
 // });
 
+// store.dispatch({
+//   type: "error",
+//   payload: { message: "An error occurred" },
+// });
+
 store.dispatch({
-  type: "error",
-  payload: { message: "An error occurred" },
+  type: "apiCallBegan",
+  payload: {
+    url: "/bugs",
+    onSuccess: "bugReceived",
+    onError: "apiRequestFailed",
+  },
 });
 
 // ------------------------------------------
