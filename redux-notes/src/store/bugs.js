@@ -11,7 +11,7 @@ const slice = createSlice({
     list: [],
     loading: false,
     lastFetch: null,
-  },
+  }, // initialState: []
   reducers: {
     // actions => actions handler
     bugAdded: (bugs, action) => {
