@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
+import moment from "moment";
 
 let lastId = 0;
 
@@ -25,6 +26,7 @@ const slice = createSlice({
     bugReceived: (bugs, action) => {
       bugs.list = action.payload;
       bugs.loading = false;
+      bugs.lastFetch = Date.now();
     },
 
     bugAdded: (bugs, action) => {
@@ -61,13 +63,32 @@ export const {
 
 // Action Creators
 const url = "/bugs";
-export const loadBugs = () =>
-  apiCallBegan({
-    url,
-    onStart: bugRequested.type,
-    onSuccess: bugReceived.type,
-    onError: bugRequesteFailed.type,
-  });
+
+export const loadBugs = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.bugs;
+
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
+  console.log("Moment", diffInMinutes);
+
+  if (diffInMinutes < 10) return;
+
+  dispatch(
+    apiCallBegan({
+      url,
+      onStart: bugRequested.type,
+      onSuccess: bugReceived.type,
+      onError: bugRequesteFailed.type,
+    })
+  );
+};
+
+// export const loadBugs = () =>
+//   apiCallBegan({
+//     url,
+//     onStart: bugRequested.type,
+//     onSuccess: bugReceived.type,
+//     onError: bugRequesteFailed.type,
+//   });
 
 // Selector function & Memoizing Selectors with Reselect
 export const getUnresolvedBugsSelector = createSelector(

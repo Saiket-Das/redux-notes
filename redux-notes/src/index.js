@@ -17,6 +17,7 @@ const store = configureStore();
 
 store.dispatch(loadBugs());
 
+setTimeout(() => store.dispatch(loadBugs()), 3000);
 // ------------------------------------------
 
 // import {
