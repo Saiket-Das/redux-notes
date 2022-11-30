@@ -1,5 +1,5 @@
 import configureStore from "./store/configureStore";
-import * as actions from "./store/api";
+import { loadBugs } from "./store/bugs";
 
 const store = configureStore();
 
@@ -15,12 +15,7 @@ const store = configureStore();
 //   payload: { message: "An error occurred" },
 // });
 
-store.dispatch(
-  actions.apiCallBegan({
-    url: "/bugs",
-    onSuccess: "bugReceived",
-  })
-);
+store.dispatch(loadBugs());
 
 // ------------------------------------------
 
@@ -28,7 +23,7 @@ store.dispatch(
 //   bugAdded,
 //   bugResolved,
 //   bugAssignToUser,
-//   unresolvedBugsSelector,
+//   getUnresolvedBugsSelector,
 //   getBugsByUserSelector,
 // } from "./store/bugs";
 // import { projectAdded } from "./store/projects";
