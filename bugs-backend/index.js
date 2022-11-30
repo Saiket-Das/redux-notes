@@ -34,5 +34,5 @@ app.patch("/api/bugs/:id", (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Node server started on port 9001.");
+  console.log("Node server started on port 5000.");
 });

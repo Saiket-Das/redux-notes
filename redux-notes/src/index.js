@@ -1,4 +1,5 @@
 import configureStore from "./store/configureStore";
+import * as actions from "./store/api";
 
 const store = configureStore();
 
@@ -14,14 +15,12 @@ const store = configureStore();
 //   payload: { message: "An error occurred" },
 // });
 
-store.dispatch({
-  type: "apiCallBegan",
-  payload: {
+store.dispatch(
+  actions.apiCallBegan({
     url: "/bugs",
     onSuccess: "bugReceived",
-    onError: "apiRequestFailed",
-  },
-});
+  })
+);
 
 // ------------------------------------------
 
