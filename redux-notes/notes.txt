@@ -113,5 +113,5 @@ console.log("Get bugs by User", getBugsByUser);
     2 - Resolving a bug
 
   Solution
-    1 - 
+    1 - Resoloved the bug by call the api (API - patch - api/bug/:id )
     2 - 

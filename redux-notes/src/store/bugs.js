@@ -61,11 +61,9 @@ export const loadBugs = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.bugs;
 
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
-  console.log("Moment", diffInMinutes);
-
   if (diffInMinutes < 10) return;
 
-  dispatch(
+  return dispatch(
     apiCallBegan({
       url,
       onStart: bugRequested.type,
@@ -75,24 +73,24 @@ export const loadBugs = () => (dispatch, getState) => {
   );
 };
 
-export const addBugs = (bug) =>
+export const addBug = (bug) =>
   apiCallBegan({
     url,
     method: "post",
     data: bug,
     onSuccess: bugAdded.type,
-    onError: bugAdded.type,
   });
 
-// export const loadBugs = () =>
-//   apiCallBegan({
-//     url,
-//     onStart: bugRequested.type,
-//     onSuccess: bugReceived.type,
-//     onError: bugRequesteFailed.type,
-//   });
+export const resolveBug = (id) =>
+  apiCallBegan({
+    // PATCH /bugs/1
+    url: url + "/" + id,
+    method: "patch",
+    data: { resolved: true },
+    onSuccess: bugResolved.type,
+  });
 
-// Selector function & Memoizing Selectors with Reselect
+// ---- Selector function & Memoizing Selectors with Reselect
 export const getUnresolvedBugsSelector = createSelector(
   (state) => state.entities.bugs,
   (state) => state.entities.projects,
@@ -104,3 +102,11 @@ export const getBugsByUserSelector = (userId) =>
     (state) => state.entities.bugs,
     (bugs) => bugs.filter((bug) => bug.userId === userId)
   );
+
+// export const loadBugs = () =>
+//   apiCallBegan({
+//     url,
+//     onStart: bugRequested.type,
+//     onSuccess: bugReceived.type,
+//     onError: bugRequesteFailed.type,
+//   });

@@ -1,9 +1,9 @@
 import configureStore from "./store/configureStore";
-import { addBugs, loadBugs } from "./store/bugs";
+import { addBugs, loadBugs, resolveBug } from "./store/bugs";
 
 const store = configureStore();
 
-// store.dispatch(loadBugs());
-store.dispatch(addBugs({ description: "a" }));
+// UI Layer
+store.dispatch(loadBugs());
 
-// setTimeout(() => store.dispatch(loadBugs()), 3000);
+setTimeout(() => store.dispatch(resolveBug(1)), 2000);
