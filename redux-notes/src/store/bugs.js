@@ -82,6 +82,15 @@ export const loadBugs = () => (dispatch, getState) => {
   );
 };
 
+export const addBugs = (bug) =>
+  apiCallBegan({
+    url,
+    method: "post",
+    data: bug,
+    onSuccess: bugAdded.type,
+    onError: bugAdded.type,
+  });
+
 // export const loadBugs = () =>
 //   apiCallBegan({
 //     url,
