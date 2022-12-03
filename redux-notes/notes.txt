@@ -104,6 +104,14 @@ console.log("Get bugs by User", getBugsByUser);
 // Exercise 2 - Assign a bug to user & get bugs by user
   Solution
     1 - Create a slice for uses. {id, name}
-    3 - Create a action for adding a user.
     2 - Create an actions for assigning a bug to a user.
+    3 - Create a action for adding a user.
     4 - Create a selector for getting bugs by user.
+
+// Exercise 3 - Save the data when:
+    1 - Assigning a bug to a user
+    2 - Resolving a bug
+
+  Solution
+    1 - 
+    2 - 

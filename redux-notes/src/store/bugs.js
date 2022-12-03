@@ -3,8 +3,6 @@ import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
 import moment from "moment";
 
-let lastId = 0;
-
 // Combine Action creator & Reducer
 const slice = createSlice({
   name: "bugs",
@@ -30,12 +28,7 @@ const slice = createSlice({
     },
 
     bugAdded: (bugs, action) => {
-      bugs.list.push({
-        id: ++lastId,
-        description: action.payload.description,
-        // userId =
-        resolved: false,
-      });
+      bugs.list.push(action.payload);
     },
 
     bugResolved: (bugs, action) => {
