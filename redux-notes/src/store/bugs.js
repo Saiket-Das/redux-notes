@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { apiCallBegan } from "./api";
 import moment from "moment";
+import axios from "axios";
+
+import { apiCallBegan } from "./api";
 
 // Combine Action creator & Reducer
 const slice = createSlice({
@@ -45,7 +47,8 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
-const {
+
+export const {
   bugAdded,
   bugResolved,
   bugAssignToUser,
@@ -73,13 +76,22 @@ export const loadBugs = () => (dispatch, getState) => {
   );
 };
 
-export const addBug = (bug) =>
-  apiCallBegan({
-    url,
-    method: "post",
-    data: bug,
-    onSuccess: bugAdded.type,
-  });
+export const addBug = async (bug) => {
+  try {
+    const response = await axios.post(url, bug);
+    dispatch(bugAdded(bug));
+  } catch {
+    dispatch({ type: "error" });
+  }
+};
+
+// export const addBug = (bug) =>
+//   apiCallBegan({
+//     url,
+//     method: "post",
+//     data: bug,
+//     onSuccess: bugAdded.type,
+//   });
 
 export const resolveBug = (id) =>
   apiCallBegan({
