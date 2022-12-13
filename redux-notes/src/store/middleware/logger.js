@@ -6,7 +6,7 @@ const logger =
     // console.log("Store", store);
     // console.log("Next", next);
     // console.log("Action", action);
-    next(action);
+    return next(action);
   };
 
 export default logger;
