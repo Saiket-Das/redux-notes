@@ -1,3 +1,0 @@
-action: bugReceived 
-reducer: loading = ture
-middleware: dispatch new action
