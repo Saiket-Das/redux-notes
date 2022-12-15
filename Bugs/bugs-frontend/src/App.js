@@ -12,8 +12,8 @@ const store = configureStore();
 function App() {
   return (
     <Provider store={store}>
-      {/* <BugsList /> */}
-      <Bugs />
+      <BugsList />
+      {/* <Bugs /> */}
     </Provider>
   );
 }
