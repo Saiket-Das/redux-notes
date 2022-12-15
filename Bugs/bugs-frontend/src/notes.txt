@@ -1,0 +1,10 @@
+Question - Should I connect a top-level component or many small components to the Redux store?
+
+
+Answer - If you connect a top-level component to the store, that component and all its children will get re-rendered every time the store gets updated.
+
+Let's say App component has two children: Bugs and Projects.
+
+If you connect App component to the store, it gets notified every time the list of bugs or projects is modified. So if you add a bug, App component gets notified and the list of bugs as well as the list of projects will be re-rendered. This is unnecessary and can cause a performance penalty.
+
+So, as a best practice, each component should independently subscribe to a small slice of the store it is interested in. This way it won't be re-rendered if other slices of the store are updated.
