@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { loadBugs } from "../store/bugs";
+import { loadBugs, resolveBug, getUnresolvedBugsSelector } from "../store/bugs";
 
 class Bugs extends Component {
   componentDidMount() {
@@ -13,7 +13,15 @@ class Bugs extends Component {
       <div>
         <ul>
           {this.props.bugs.map((bug) => (
-            <li key={bug.id}>{bug.description}</li>
+            <li key={bug.id} style={{ marginBottom: "10px" }}>
+              {bug.description}
+              <button
+                style={{ marginLeft: "20px" }}
+                onClick={() => this.props.resolveBug(bug.id)}
+              >
+                Resolve
+              </button>
+            </li>
           ))}
         </ul>
       </div>
@@ -24,11 +32,12 @@ class Bugs extends Component {
 // bugs: state.entities.bug.list
 
 const mappStateToProps = (state) => ({
-  bugs: state.entities.bugs.list,
+  bugs: getUnresolvedBugsSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadBugs: () => dispatch(loadBugs()),
+  resolveBug: (id) => dispatch(resolveBug(id)),
 });
 
 // Conatiner
