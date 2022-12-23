@@ -11,10 +11,12 @@ const store = configureStore();
 
 function App() {
   return (
-    <Provider store={store}>
-      <BugsList />
-      {/* <Bugs /> */}
-    </Provider>
+    <>
+      <Provider store={store}>
+        <BugsList />
+        {/* <Bugs /> */}
+      </Provider>
+    </>
   );
 }
 
