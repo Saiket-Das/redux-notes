@@ -1,25 +1,24 @@
 import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { useGetProductsQuery } from "../../app/features/api/apiSlice";
 
 const ProductList = () => {
-  // const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  // const { products, isLoading, deleteSuccess, isError, error } = state.products;
+  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery();
 
-  // useEffect(() => {
-  //   if (!isLoading && deleteSuccess) {
-  //     toast.success("Product deleted", { id: "deleteProduct" });
-  //     dispatch(toggleDeleteSuccess());
-  //   }
+  const products = data?.data;
 
-  //   if (!isLoading && isError) {
-  //     toast.error(error, { id: "deleteProduct" });
-  //   }
-  // }, [error, deleteSuccess]);
+  useEffect(() => {
+    if (!isLoading && isSuccess) {
+      toast.success("Product deleted", { id: "deleteProduct" });
+    }
 
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, [dispatch]);
+    if (!isLoading && isError) {
+      toast.error(error, { id: "deleteProduct" });
+    }
+  }, [error, isSuccess]);
 
   return (
     <div className="flex flex-col justify-center items-center h-full w-full ">
@@ -51,7 +50,7 @@ const ProductList = () => {
               </tr>
             </thead>
 
-            {/* <tbody className="text-sm divide-y divide-gray-100">
+            <tbody className="text-sm divide-y divide-gray-100">
               {products.map(({ model, brand, price, status, _id }) => (
                 <tr key={_id}>
                   <td className="p-2">
@@ -99,7 +98,7 @@ const ProductList = () => {
                   </td>
                 </tr>
               ))}
-            </tbody> */}
+            </tbody>
           </table>
         </div>
       </div>
