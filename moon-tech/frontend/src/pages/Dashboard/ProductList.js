@@ -78,7 +78,7 @@ const ProductList = () => {
                   </td>
                   <td className="p-2">
                     <div className="flex justify-center">
-                      <button onClick={() => dispatch(deleteProduct(_id))}>
+                      <button>
                         <svg
                           className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
                           fill="none"
