@@ -8,7 +8,9 @@ import ProductCard from "../../components/ProductCard";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { data, isLoading, isError } = useGetProductsQuery();
+  const { data, isLoading, isError } = useGetProductsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const products = data?.data;
 
