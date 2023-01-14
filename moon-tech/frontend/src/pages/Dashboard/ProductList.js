@@ -1,24 +1,46 @@
 import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { useGetProductsQuery } from "../../app/features/api/apiSlice";
+import {
+  useDeleteProductMutation,
+  useGetProductsQuery,
+} from "../../app/features/api/apiSlice";
 
 const ProductList = () => {
-  const dispatch = useDispatch();
+  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery(
+    null,
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
-  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
 
   const products = data?.data;
 
-  useEffect(() => {
-    if (!isLoading && isSuccess) {
-      toast.success("Product deleted", { id: "deleteProduct" });
-    }
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-    if (!isLoading && isError) {
-      toast.error(error, { id: "deleteProduct" });
-    }
-  }, [error, isSuccess]);
+  if (isLoading) {
+    return <p>Something went wrong</p>;
+  }
+
+  // if (products?.length) {
+  //   content = products.map((product) => (
+  //     <ProductCard key={product.model} product={product} />
+  //   ));
+  // }
+
+  // useEffect(() => {
+  //   if (!isLoading && isSuccess) {
+  //     toast.success("Product deleted", { id: "deleteProduct" });
+  //   }
+
+  //   if (!isLoading && isError) {
+  //     toast.error(error, { id: "deleteProduct" });
+  //   }
+  // }, [error, isSuccess]);
 
   return (
     <div className="flex flex-col justify-center items-center h-full w-full ">
@@ -78,7 +100,7 @@ const ProductList = () => {
                   </td>
                   <td className="p-2">
                     <div className="flex justify-center">
-                      <button>
+                      <button onClick={() => deleteProduct(_id)}>
                         <svg
                           className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
                           fill="none"

@@ -9,6 +9,7 @@ import { addToCart, removeFromCart } from "../app/features/cart/cartSlice";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+
   const { pathname } = useLocation();
 
   return (
