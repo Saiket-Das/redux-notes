@@ -49,7 +49,7 @@ const run = async () => {
 run().catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
-  res.send("Moon Tech is runing!");
+  res.send("Moon Tech is running!");
 });
 
 app.listen(port, () => {
