@@ -75,14 +75,7 @@ export const loadBugs = () => (dispatch, getState) => {
   );
 };
 
-// export const addBug = async (bug) => {
-//   try {
-//     const response = await axios.post(url, bug);
-//     dispatch(bugAdded(bug));
-//   } catch {
-//     dispatch({ type: "error" });
-//   }
-// };
+
 
 export const addBug = (bug) =>
   apiCallBegan({
@@ -123,10 +116,4 @@ export const getBugsByUserSelector = (userId) =>
     (bugs) => bugs.filter((bug) => bug.userId === userId)
   );
 
-// export const loadBugs = () =>
-//   apiCallBegan({
-//     url,
-//     onStart: bugRequested.type,
-//     onSuccess: bugReceived.type,
-//     onError: bugRequesteFailed.type,
-//   });
+
