@@ -1,6 +1,6 @@
 ------------- Redux Notes Exerices -------------
 
-// Exercise 1 
+// Exercise 1 - ?
 
 // Exercise 2 - Assign a bug to user & get bugs by user
   Solution
@@ -13,9 +13,8 @@
     1 - Assigning a bug to a user
     2 - Resolving a bug
 
-  Solution
+  Solution (Exercise 3)
     1 - Resoloved the bug by call the api (API - patch - api/bug/:id )
-    2 - 
 
 
 ------------- Bugs Frontend Exerices -------------
